@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How Crumbled Is Your Cookie? · Chippy: Some Time for Myself</title>
+  <meta name="description" content="Take the 45-second People-Pleaser & Parent Burnout Check inspired by 'Chippy: Some Time for Myself' by Brent Leyden Singh." />
+  <meta property="og:title" content="How Crumbled Is Your Cookie? (45-Sec Quiz)" />
+  <meta property="og:description" content="Even the sweetest cookie crumbles without a break. Find out your Cookie Status and meet Chippy!" />
+  <style>
+    :root {
+      --bg: #fdf8f0;
+      --card: #ffffff;
+      --ink: #231f20;
+      --muted: #635850;
+      --cookie: #c67d38;
+      --cookie-dark: #8c4f19;
+      --chip: #3b2314;
+      --sky: #dff1ff;
+      --accent: #1d70b8;
+      --green: #1e7e48;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.55;
+      padding-bottom: 4rem;
+    }
+    header {
+      background: linear-gradient(180deg, var(--sky) 0%, var(--bg) 100%);
+      padding: 2.5rem 1.25rem 1.5rem;
+      text-align: center;
+      border-bottom: 2px solid #efe5d5;
+    }
+    .badge {
+      display: inline-block;
+      background: #fff3da;
+      color: var(--cookie-dark);
+      border: 1px solid #e6c68f;
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
+    h1 {
+      font-size: clamp(1.8rem, 4vw, 2.75rem);
+      color: var(--chip);
+      max-width: 720px;
+      margin: 0 auto 0.5rem;
+      line-height: 1.15;
+    }
+    .sub {
+      color: var(--muted);
+      max-width: 600px;
+      margin: 0 auto 1.25rem;
+      font-size: 1.05rem;
+    }
+    .container {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 0 1.25rem;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 2rem;
+      align-items: center;
+      background: var(--card);
+      border: 2px solid #ecdec9;
+      border-radius: 18px;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+    }
+    @media (max-width: 680px) {
+      .hero-grid { grid-template-columns: 1fr; text-align: center; }
+    }
+    .hero-grid img.cover {
+      width: 100%;
+      max-width: 250px;
+      border-radius: 12px;
+      border: 1px solid #e0d2be;
+      margin: 0 auto;
+      display: block;
+    }
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+    .btn {
+      display: inline-block;
+      text-decoration: none;
+      font-weight: 700;
+      padding: 0.8rem 1.35rem;
+      border-radius: 10px;
+      cursor: pointer;
+      border: none;
+      font-size: 1rem;
+      transition: transform 0.1s ease;
+    }
+    .btn:active { transform: scale(0.98); }
+    .btn-primary {
+      background: #ff9900;
+      color: #111;
+    }
+    .btn-secondary {
+      background: var(--chip);
+      color: #fff;
+    }
+    .quiz-box {
+      background: var(--card);
+      border: 2px solid var(--cookie);
+      border-radius: 18px;
+      padding: 1.75rem;
+      margin: 2rem 0;
+    }
+    .quiz-title {
+      font-size: 1.4rem;
+      color: var(--chip);
+      margin-bottom: 0.35rem;
+    }
+    .question {
+      margin: 1.25rem 0;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #f0e6d8;
+    }
+    .question p {
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    .options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .opt-btn {
+      background: #faf3e8;
+      border: 1px solid #dcc7aa;
+      border-radius: 8px;
+      padding: 0.5rem 0.9rem;
+      cursor: pointer;
+      font-size: 0.92rem;
+      color: var(--ink);
+    }
+    .opt-btn.selected {
+      background: var(--cookie);
+      color: #fff;
+      border-color: var(--cookie-dark);
+      font-weight: 600;
+    }
+    #quiz-result {
+      display: none;
+      margin-top: 1.25rem;
+      padding: 1.25rem;
+      background: #fff8eb;
+      border: 2px dashed var(--cookie);
+      border-radius: 12px;
+    }
+    .blooper-section {
+      background: #171922;
+      color: #f5f7fa;
+      border-radius: 18px;
+      padding: 1.75rem;
+      margin: 2rem 0;
+    }
+    .blooper-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    @media (max-width: 680px) {
+      .blooper-grid { grid-template-columns: 1fr; }
+    }
+    .blooper-grid img {
+      width: 100%;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <span class="badge">5.0 ★ ON AMAZON · AGES 3-8 (AND BURNED-OUT PARENTS)</span>
+    <h1>Even the Sweetest Cookie Crumbles Without a Timeout.</h1>
+    <p class="sub">Meet <strong>Chippy: Some Time for Myself</strong> by Brent Leyden Singh: the children's book teaching little helpers (and their parents) the magic of stepping back before they burn out.</p>
+  </header>
+
+  <main class="container">
+    <section class="hero-grid">
+      <img class="cover" src="Chippy_book_cover.jpg" alt="Chippy: Some Time for Myself book cover" />
+      <div>
+        <h2 style="color: var(--chip); margin-bottom: 0.5rem;">Why Parents & Kids Love Chippy</h2>
+        <p>In Sweetville, Chippy the chocolate-chip cookie loves helping Leo the lion, Benny the bunny, and Ella the elephant. Putting everyone else first makes him happy, until he starts running on crumbs.</p>
+        <p style="margin-top: 0.6rem;">Written by a software test engineer & dad of a 4-year-old, <em>Chippy</em> reframes "quiet time" from a punishment ("Go to your room!") into a lifelong superpower.</p>
+        <div style="margin-top: 0.9rem;">
+          <audio controls style="width: 100%; max-width: 380px;">
+            <source src="chippy_voice.mp3" type="audio/mpeg" />
+          </audio>
+        </div>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://www.amazon.com/Chippy-Myself-Brent-Leyden-Singh/dp/B0CP16946B" target="_blank" rel="noopener">Buy on Amazon ($7.68 Paperback / $0 KU)</a>
+          <a class="btn btn-secondary" href="#quiz">Take the 45-Sec Cookie Check</a>
+          <a class="btn btn-secondary" style="background:#1e7e48;" href="Chippy_Printable_Coloring_And_Activity_Pack.pdf" download>Download Free 4-Page Coloring Pack (PDF)</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="quiz" class="quiz-box">
+      <h2 class="quiz-title">Interactive Check: How Crumbled Is Your Cookie?</h2>
+      <p style="color: var(--muted); font-size: 0.95rem;">Answer 4 quick questions (for yourself or your little helper) to get your Sweetville Cookie Rating.</p>
+
+      <div class="question" data-q="0">
+        <p>1. When someone bumps into you (or your kid), what happens first?</p>
+        <div class="options">
+          <button class="opt-btn" onclick="pick(0, 2, this)">Immediate "I'm sorry! I'm sorry!"</button>
+          <button class="opt-btn" onclick="pick(0, 1, this)">Smile politely and keep moving</button>
+          <button class="opt-btn" onclick="pick(0, 0, this)">Speak up calmly</button>
+        </div>
+      </div>
+
+      <div class="question" data-q="1">
+        <p>2. A friend asks to play a high-energy game when you are already exhausted:</p>
+        <div class="options">
+          <button class="opt-btn" onclick="pick(1, 2, this)">Say "Umm... sure" even while raining</button>
+          <button class="opt-btn" onclick="pick(1, 1, this)">Tag along for 10 minutes then fade</button>
+          <button class="opt-btn" onclick="pick(1, 0, this)">Say "I need bench time first"</button>
+        </div>
+      </div>
+
+      <div class="question" data-q="2">
+        <p>3. How do you treat 10 minutes of quiet time with zero screens?</p>
+        <div class="options">
+          <button class="opt-btn" onclick="pick(2, 2, this)">Guilt ("I should be doing something useful")</button>
+          <button class="opt-btn" onclick="pick(2, 1, this)">Rare luxury once a month</button>
+          <button class="opt-btn" onclick="pick(2, 0, this)">Daily recharge on the park bench</button>
+        </div>
+      </div>
+
+      <div class="question" data-q="3">
+        <p>4. When a small mistake happens (like spilling milk at breakfast):</p>
+        <div class="options">
+          <button class="opt-btn" onclick="pick(3, 2, this)">Panic: "Are you mad at me?"</button>
+          <button class="opt-btn" onclick="pick(3, 1, this)">Quietly sulk for an hour</button>
+          <button class="opt-btn" onclick="pick(3, 0, this)">Wipe it up and try again</button>
+        </div>
+      </div>
+
+      <div id="quiz-result">
+        <h3 id="res-title" style="color: var(--cookie-dark); margin-bottom: 0.35rem;"></h3>
+        <p id="res-body" style="margin-bottom: 0.9rem;"></p>
+        <div class="cta-row">
+          <button class="btn btn-secondary" onclick="shareResult()">Copy My Result to Share</button>
+          <a class="btn btn-primary" href="https://a.co/d/eZ1Sok4" target="_blank" rel="noopener">Get Chippy on Amazon</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="blooper-section">
+      <h2 style="color: #ffd466;">Why the Internet Is Laughing at Our Outtakes</h2>
+      <p style="color: #c8cedc; margin-top: 0.35rem;">Making an indie kids' book means surviving cursed early drafts, Saratoga ice-water routines, and QA debugging.</p>
+      <div class="blooper-grid">
+        <img src="1_expectation_vs_reality_card.png" alt="Published cover vs AI nightmare blooper HRPY BIRTHAY" />
+        <img src="2_ice_bowl_morning_routine_meme.png" alt="Chippy Saratoga ice bowl morning routine meme" />
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const answers = [null, null, null, null];
+    let shareText = "";
+
+    function pick(qIndex, score, btn) {
+      answers[qIndex] = score;
+      const parent = btn.parentElement;
+      Array.from(parent.children).forEach(b => b.classList.remove("selected"));
+      btn.classList.add("selected");
+      if (answers.every(a => a !== null)) {
+        renderResult();
+      }
+    }
+
+    function renderResult() {
+      const total = answers.reduce((a, b) => a + b, 0);
+      const box = document.getElementById("quiz-result");
+      const title = document.getElementById("res-title");
+      const body = document.getElementById("res-body");
+      box.style.display = "block";
+
+      if (total >= 6) {
+        title.textContent = "Result: 92% Soggy Cookie (Immediate Park Bench Needed!)";
+        body.textContent = "You (or your little one) are running on pure people-pleasing fumes with zero rate-limiting! Time to pull a Chippy, sit on the sunny park bench, and recharge before you crumble.";
+      } else if (total >= 3) {
+        title.textContent = "Result: Slightly Crumbly Helper (Needs a 10-Min Timeout)";
+        body.textContent = "You love helping Leo, Benny, and Ella, but your edges are starting to fray. Grab 10 minutes of quiet time today.";
+      } else {
+        title.textContent = "Result: Golden-Baked Boundary Master!";
+        body.textContent = "You already know the secret of Sweetville: you can't pour milk for everyone else if your own cookie is soggy.";
+      }
+      shareText = `${title.textContent} — I just took the 45-second Cookie Burnout Check from "Chippy: Some Time for Myself" by Brent Leyden Singh! Check yours: https://a.co/d/eZ1Sok4`;
+    }
+
+    function shareResult() {
+      navigator.clipboard.writeText(shareText);
+      alert("Copied result to clipboard! Paste it into your group chat, X, or LinkedIn.");
+    }
+  </script>
+</body>
+</html>
